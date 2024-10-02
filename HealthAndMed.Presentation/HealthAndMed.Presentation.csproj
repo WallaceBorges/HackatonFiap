@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>HealthAndMed.Presentation</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Health&amp;Med.Domain\HealthAndMed.Domain.csproj" />
+    <ProjectReference Include="..\Health&amp;Med.Infra.Data\HealthAndMed.Infra.Data.csproj" />
+    <ProjectReference Include="..\HealthAndMed.Application\HealthAndMed.Application.csproj" />
+    <ProjectReference Include="..\HealthAndMed.Domain\HealthAndMed.Domain.csproj" />
+    <ProjectReference Include="..\HealthAndMed.Infra.Authentication\HealthAndMed.Infra.Authentication.csproj" />
+    <ProjectReference Include="..\HealthAndMed.Infra.Data\HealthAndMed.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
