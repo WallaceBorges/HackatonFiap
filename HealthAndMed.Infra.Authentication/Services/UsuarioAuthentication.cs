@@ -30,6 +30,7 @@ namespace HealthAndMed.Infra.Authentication.Services
                 Subject = new ClaimsIdentity(new Claim[]
                 { 
                     new Claim(ClaimTypes.Name, usuario.Email)
+                   ,new Claim(ClaimTypes.Role, usuario.TipoUsuario.ToString())
                    ,new Claim("Id", usuario.Id.ToString()) 
                 }),
                 //definindo a data de expiração do token

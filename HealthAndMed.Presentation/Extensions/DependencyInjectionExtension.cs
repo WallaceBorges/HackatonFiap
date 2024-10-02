@@ -38,6 +38,7 @@ namespace AtivosTC5.Services.Extensions
             services.AddTransient<IUsuarioAuthentication, UsuarioAuthentication>();
 
             services.AddTransient<IUsuarioAppService, UsuarioAppService>();
+            services.AddTransient<IUsuarioMedicoAppService, UsuarioMedicoAppService>();
 
             services.AddTransient<ICriaAgendaDisponivel, CriaAgendaDisponivel>();
             services.AddTransient<IFinalizaConsultaAgenda, FinalizaConsultaAgenda>();

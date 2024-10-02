@@ -26,6 +26,10 @@ namespace HealthAndMed.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Autenticar([FromBody] AutenticarRequestModel usuarioModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 var response = _usuarioService?.Autenticar(usuarioModel);
@@ -47,6 +51,10 @@ namespace HealthAndMed.Presentation.Controllers
         [Route("Criar-Conta-medico")]
         public IActionResult CriarConta(CadastraMedicoRequestModel request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 var response = _usuarioService?.CriarContaMedico(request);
@@ -68,6 +76,10 @@ namespace HealthAndMed.Presentation.Controllers
         [Route("Criar-Conta-paciente")]
         public IActionResult CriarConta(CadastraPacienteRequestModel request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 var response = _usuarioService?.CriarContaPaciente(request);

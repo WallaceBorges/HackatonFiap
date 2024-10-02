@@ -36,35 +36,42 @@ namespace HealthAndMed.Infra.Data.Repositories
 
         public virtual void Deletar(int medicoIde, DateTime dtAtendimento)
         {
-            _dbSet.Remove(ObterPorIdMedicoEData(medicoIde, dtAtendimento));
+            var agenda = ObterPorIdMedicoEData(medicoIde, dtAtendimento);
+            _dbSet.Remove(agenda.Result);
             _context.SaveChanges();
         }
 
-        public virtual IList<Agenda> ObterPorIdMedico(int id)
+        public virtual async Task<IList<Agenda>> ObterPorIdMedico(int id)
         {
-            return _dbSet.Where(t => t.Medico_Id == id && t.DataAtendimento >= DateTime.Today).ToList();
+            return await _dbSet.Where(t => t.Medico_Id == id && t.DataAtendimento >= DateTime.Today).ToListAsync();
         }
 
-        public virtual Agenda ObterPorIdMedicoEData(int id, DateTime dtAgenda)
+        public virtual async Task<Agenda> ObterPorIdMedicoEData(int id, DateTime dtAgenda)
         {
-            return _dbSet.FirstOrDefault(t => t.Medico_Id == id && t.DataAtendimento == dtAgenda);
+            return await _dbSet.FirstOrDefaultAsync(t => t.Medico_Id == id && t.DataAtendimento == dtAgenda);
         }
 
-        public virtual IList<Agenda> ObterPorIdPaciente(int id)
+        public virtual async Task<IList<Agenda>> ObterPorIdPaciente(int id)
         {
-            return _dbSet.Where(t => t.Paciente_Id == id && t.DataAtendimento >= DateTime.Today).ToList();
+            return await _dbSet.Where(t => t.Paciente_Id == id && t.DataAtendimento >= DateTime.Today).ToListAsync();
         }
 
-        public virtual Agenda ObterPorIdPacienteEData(int id, DateTime dtAgenda)
+        public virtual async Task<Agenda> ObterPorIdPacienteEData(int id, DateTime dtAgenda)
         {
-            return _dbSet.FirstOrDefault(t => t.Paciente_Id == id && t.DataAtendimento == dtAgenda);
+            return await _dbSet.FirstOrDefaultAsync(t => t.Paciente_Id == id && t.DataAtendimento == dtAgenda);
         }
 
-        public virtual IList<Agenda> ObterPorIdEspecialidade(int id)
+        public virtual async Task<IList<Agenda>> ObterPorIdEspecialidade(int id)
         {
-            return _dbSet
+            return await _dbSet
                 .Include(x => x.Medico)
-                .Where(t => t.Medico.Especialidade_Id == id && t.DataAtendimento >= DateTime.Today).ToList();
+                .Where(t => t.Medico.Especialidade_Id == id && t.DataAtendimento >= DateTime.Today).ToListAsync();
+        }
+
+        public virtual async Task<IList<Agenda>> ObterPorIdMedicoNaData(int id, DateTime dtAgenda)
+        {
+            return await _dbSet
+               .Where(t => t.Medico_Id == id && t.DataAtendimento.Date == DateTime.Today).ToListAsync();
         }
     }
 }

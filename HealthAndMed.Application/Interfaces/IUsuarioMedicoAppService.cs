@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HealthAndMed.Domain.Interfaces.Services
+namespace HealthAndMed.Application.Interfaces
 {
-    public interface IUsuarioMedicoDomainService
+    public interface IUsuarioMedicoAppService
     {
         Task<IList<AgendaResponseModel>> ListaAgendaPorMedico(int idMedico);
         Task<AgendaResponseModel> AgendaMedicoEdata(DateTime data, int idMedico);
         Task<IList<AgendaResponseModel>> ListaAgendaNaData(DateTime data, int idMedico);
-    
     }
 }
