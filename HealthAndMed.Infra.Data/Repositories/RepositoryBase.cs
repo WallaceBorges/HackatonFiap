@@ -1,5 +1,7 @@
-﻿using HealthAndMed.Domain.Entities;
+﻿using AtivosTC5.Infra.Data.Contexts;
+using HealthAndMed.Domain.Entities;
 using HealthAndMed.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,34 +12,48 @@ namespace HealthAndMed.Infra.Data.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : EntityBase
     {
-        public void Alterar(T entidade)
+        protected SqlServerContext _context;
+        protected DbSet<T> _dbSet;
+
+        public RepositoryBase()
         {
-            throw new NotImplementedException();
+            _context = new SqlServerContext();
+            _dbSet = _context.Set<T>();
         }
 
-        public void Cadastrar(T entidade)
+
+        public virtual void Alterar(T entidade)
         {
-            throw new NotImplementedException();
+            _dbSet.Update(entidade);
+            _context.SaveChanges();
         }
 
-        public void Deletar(int id)
+        public virtual void Cadastrar(T entidade)
         {
-            throw new NotImplementedException();
+            _dbSet.Add(entidade);
+            _context.SaveChanges();
         }
 
-        public T ObterPorId(int id)
+        public virtual void Deletar(int id)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(ObterPorId(id));
+            _context.SaveChanges();
         }
 
-        public IList<T> ObterTodos()
+        public virtual T ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            return _dbSet.FirstOrDefault(t => t.Id == id);
         }
 
-        public Task<IList<T>> ObterTodosAsync()
+        public virtual IList<T> ObterTodos()
         {
-            throw new NotImplementedException();
+            return _dbSet.ToList();
+        }
+
+        public virtual async Task<IList<T>> ObterTodosAsync()
+        {
+            return await _dbSet.ToListAsync();
         }
     }
 }
+

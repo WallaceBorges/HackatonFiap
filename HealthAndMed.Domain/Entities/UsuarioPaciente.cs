@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthAndMed.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace HealthAndMed.Domain.Entities
 {
     public class UsuarioPaciente:UsuarioBase
     {
-
+        public IList<Agenda> Agendas { get; set; }
     }
 }

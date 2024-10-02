@@ -1,5 +1,13 @@
 ﻿
+using HealthAndMed.Application.Interfaces;
+using HealthAndMed.Application.Services;
+using HealthAndMed.Application.UseCases;
+using HealthAndMed.Domain.Interfaces;
 using HealthAndMed.Domain.Interfaces.Repositories;
+using HealthAndMed.Domain.Interfaces.Services;
+using HealthAndMed.Domain.Services;
+using HealthAndMed.Domain.UseCases;
+using HealthAndMed.Infra.Authentication.Services;
 using HealthAndMed.Infra.Data.Repositories;
 
 namespace AtivosTC5.Services.Extensions
@@ -23,6 +31,16 @@ namespace AtivosTC5.Services.Extensions
             services.AddTransient<IEspecialidadeMedicaRepository, EspecialidadeMedicaRepository>();
             services.AddTransient<IUsuarioMedicoRepository, UsuarioMedicoRepository>();
             services.AddTransient<IUsuarioPacienteRepository, UsuarioPacienteRepository>();
+
+            services.AddTransient<IUsuarioDomainService, UsuarioDomainService>();
+            services.AddTransient<IUsuarioMedicoDomainService, UsuarioMedicoDomainService>();
+            services.AddTransient<IUsuarioBaseRepository, UsuarioBaseRepository>();
+            services.AddTransient<IUsuarioAuthentication, UsuarioAuthentication>();
+
+            services.AddTransient<IUsuarioAppService, UsuarioAppService>();
+
+            services.AddTransient<ICriaAgendaDisponivel, CriaAgendaDisponivel>();
+            services.AddTransient<IFinalizaConsultaAgenda, FinalizaConsultaAgenda>();
 
             #endregion
 

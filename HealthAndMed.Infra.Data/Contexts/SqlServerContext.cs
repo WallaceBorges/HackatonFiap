@@ -39,9 +39,8 @@ namespace AtivosTC5.Infra.Data.Contexts
         /// Provedor de métodos para o repositorio (CRUD)
         /// </summary>
         public virtual DbSet<EspecialidadeMedica> EspecialidadeMedidas { get; set; }
-        public virtual DbSet<UsuarioMedico> Medicos { get; set; }
-        public virtual DbSet<UsuarioPaciente> Pacientes { get; set; }
-        public virtual DbSet<Agenda> Agendas { get; set; }
         public virtual DbSet<MedicoEspecialidade> MedicoEspecialidades { get; set; }
+        public virtual DbSet<UsuarioBase> Usuarios { get; set; }
+        public virtual DbSet<Agenda> Agendas { get; set; }
     }
 }
