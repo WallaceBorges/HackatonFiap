@@ -32,17 +32,18 @@ namespace AtivosTC5.Services.Extensions
             services.AddTransient<IEspecialidadeMedicaRepository, EspecialidadeMedicaRepository>();
             services.AddTransient<IUsuarioMedicoRepository, UsuarioMedicoRepository>();
             services.AddTransient<IUsuarioPacienteRepository, UsuarioPacienteRepository>();
+            services.AddTransient<IUsuarioBaseRepository, UsuarioBaseRepository>();
 
             services.AddTransient<IUsuarioDomainService, UsuarioDomainService>();
             services.AddTransient<IUsuarioMedicoDomainService, UsuarioMedicoDomainService>();
             services.AddTransient<IUsuarioPacienteDomainService, UsuarioPacienteDomainService>();
-            services.AddTransient<IUsuarioBaseRepository, UsuarioBaseRepository>();
+            services.AddTransient<IEspecialidadeMedicaDomainService, EspecialidadeMedicaDomainService>();
             services.AddTransient<IUsuarioAuthentication, UsuarioAuthentication>();
 
             services.AddTransient<IUsuarioAppService, UsuarioAppService>();
             services.AddTransient<IUsuarioMedicoAppService, UsuarioMedicoAppService>();
-            services.AddTransient<IUsuarioPacienteDomainService, UsuarioPacienteDomainService>();
             services.AddTransient<IUsuarioPacienteAppService, UsuarioPacienteAppService>();
+            services.AddTransient<IEspecialidadeMedicaAppService, EspecialidadeMedicaAppService>();
 
             services.AddTransient<ICriaAgendaDisponivel, CriaAgendaDisponivel>();
             services.AddTransient<IFinalizaConsultaAgenda, FinalizaConsultaAgenda>();

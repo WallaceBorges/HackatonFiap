@@ -24,14 +24,14 @@ namespace HealthAndMed.Application.UseCases
                 var ag = await _agendaRepository.ObterPorIdPacienteEData(agenda.Paciente_Id, agenda.DataAtendimento);
                 if (ag != null)
                 {
-                    if (ag.isAtendico.Value != null &&
-                        ag.isAtendico.Value &&
+                    if ((ag.isAtendico.HasValue &&
+                        ag.isAtendico.Value) ||
                         ag.DataAtendimento < DateTime.Now)
                     {
                         throw new Exception("Não é possivel cancelar esta consulta, consulta já aconteceu ou data anterior a data atual.");
                     }
 
-                    ag.Paciente = null;
+                    ag.Paciente_Id = null;
                     ag.DataAgendou = null;
                     _agendaRepository.Alterar(ag);
                     return "Consulta Cancelada com sucesso.";

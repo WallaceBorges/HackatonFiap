@@ -32,14 +32,14 @@ namespace HealthAndMed.Presentation.Controllers
         [HttpPut]
         [Authorize(Roles = $"{Permissoes.Paciente}")]
         [Route("agenda-consulta")]
-        public IActionResult CriarConsulta(MarcaAgendamentoRequestModel request)
+        public async Task<IActionResult> CriarConsulta(MarcaAgendamentoRequestModel request)
         {
             var userId = int.Parse(User.FindFirst("Id")?.Value);
             try
             {
                 request.Paciente_Id = userId;
-                var response = _agendaConsulta?.AgendarConsulta(request);
-                return StatusCode(201, response.Result);
+                var response =await _agendaConsulta?.AgendarConsulta(request);
+                return StatusCode(201, response);
             }
             catch (Exception e)
             {
@@ -55,13 +55,13 @@ namespace HealthAndMed.Presentation.Controllers
         [HttpPut]
         [Authorize(Roles = $"{Permissoes.Paciente}")]
         [Route("cancela-consulta")]
-        public IActionResult cancelaConsulta(MarcaAgendamentoRequestModel request)
+        public async Task<IActionResult> cancelaConsulta(MarcaAgendamentoRequestModel request)
         {
             var userId = int.Parse(User.FindFirst("Id")?.Value);
             try
             {
                 request.Paciente_Id = userId;
-                var response = _cancelaConsulta?.CancelaConsulta(request);
+                var response = await _cancelaConsulta?.CancelaConsulta(request);
                 return StatusCode(201, response);
             }
             catch (Exception e)
@@ -77,7 +77,7 @@ namespace HealthAndMed.Presentation.Controllers
         [HttpGet]
         [Authorize(Roles = $"{Permissoes.Paciente}")]
         [Route("lista-consulta-paciente")]
-        public async  Task<IActionResult> CancelaConsulta()
+        public async Task<IActionResult> CancelaConsulta()
         {
             var userId = int.Parse(User.FindFirst("Id")?.Value);
             try
@@ -99,12 +99,12 @@ namespace HealthAndMed.Presentation.Controllers
         [HttpGet]
         [Authorize(Roles = $"{Permissoes.Paciente}")]
         [Route("lista-consulta-medico-data/{id}/{data}")]
-        public async Task<IActionResult> PorMedicoConsulta(int idMedico,DateTime data)
+        public async Task<IActionResult> PorMedicoConsulta(int id,DateTime data)
         {
             var userId = int.Parse(User.FindFirst("Id")?.Value);
             try
             {
-                var response = await _appService.ListaMedicoNaData(data,idMedico);
+                var response = await _appService.ListaMedicoNaData(data,id);
                 return StatusCode(201, response);
 
             }

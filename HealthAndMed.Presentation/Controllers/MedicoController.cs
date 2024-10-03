@@ -164,8 +164,8 @@ namespace HealthAndMed.Presentation.Controllers
                 _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
                 return BadRequest($"Erro ao realizar consulta: {e.Message}");
             }
-
-
         }
+
+       
     }
 }

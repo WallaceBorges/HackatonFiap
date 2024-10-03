@@ -19,12 +19,12 @@ namespace HealthAndMed.Services.Extensions
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "API para controle de ativos financeiros",
-                    Description = "API REST desenvolvida em AspNet 8 com EntityFramework para o Tech Challenge 5",
+                    Title = "API para controle de Consultas Médicas",
+                    Description = "API REST desenvolvida em AspNet 8 com EntityFramework Hackaton Health&Med Fiap",
                     Version = "v1",
                     Contact = new OpenApiContact
                     {
-                        Name = "FIAP Pós Tech - Tech Challenge 5",
+                        Name = "FIAP Pós Tech - Health&Med",
                         Email = "wallace.c.borges@hotmail.com",
                         Url = new Uri("https://www.fiap.com.br/")
                     }

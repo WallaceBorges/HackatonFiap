@@ -25,7 +25,7 @@ namespace HealthAndMed.Application.UseCases
                 var ag = await _agendaRepository.ObterPorIdMedicoEData(agenda.Medico_Id, agenda.DataAtendimento);
                 if (ag != null)
                 {
-                    if ((ag.isAtendico.HasValue && ag.isAtendico.Value)&&
+                    if ((ag.isAtendico.HasValue && ag.isAtendico.Value)||
                         ag.DataAtendimento < DateTime.Now)
                     {
                         throw new Exception("Este Horário não está diponivel");
