@@ -73,5 +73,11 @@ namespace HealthAndMed.Infra.Data.Repositories
             return await _dbSet
                .Where(t => t.Medico_Id == id && t.DataAtendimento.Date == DateTime.Today).ToListAsync();
         }
+
+        public virtual async Task<IList<Agenda>> ObterPorIdPacienteNaData(int id, DateTime dtAgenda)
+        {
+            return await _dbSet
+               .Where(t => t.Paciente_Id == id && t.DataAtendimento.Date == DateTime.Today).ToListAsync();
+        }
     }
 }

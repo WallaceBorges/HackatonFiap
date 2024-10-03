@@ -17,6 +17,7 @@ namespace HealthAndMed.Domain.Interfaces.Repositories
         Task<Agenda> ObterPorIdMedicoEData(int id, DateTime dtAgenda);
         Task<IList<Agenda>> ObterPorIdPaciente(int id);
         Task<Agenda> ObterPorIdPacienteEData(int id, DateTime dtAgenda);
+        Task<IList<Agenda>> ObterPorIdPacienteNaData(int id, DateTime dtAgenda);
         Task<IList<Agenda>> ObterPorIdEspecialidade(int id);
     }
 }

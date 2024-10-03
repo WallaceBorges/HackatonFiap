@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HealthAndMed.Domain.Models.Requests
@@ -10,7 +11,7 @@ namespace HealthAndMed.Domain.Models.Requests
     {
         public int Medico_Id { get; set; }
         public DateTime DataAtendimento { get; set; }
+        [JsonIgnore]
         public int Paciente_Id { get; set; }
-        public DateTime DataAgendamento { get; set; } = DateTime.Now;
     }
 }

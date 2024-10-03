@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HealthAndMed.Domain.UseCases
+namespace HealthAndMed.Domain.Interfaces.UseCases
 {
-    public interface IPacienteAgendaConsulta
+    public interface IPacienteCancelaConsulta
     {
-        Task<string> AgendarConsulta(MarcaAgendamentoRequestModel agenda);
+        Task<string> CancelaConsulta(MarcaAgendamentoRequestModel agenda);
     }
 }

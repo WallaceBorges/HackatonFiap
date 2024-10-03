@@ -18,9 +18,9 @@ namespace HealthAndMed.Presentation.Controllers
         private readonly IFinalizaConsultaAgenda _finalizaAgenda;
         private readonly IMedicoCancelaAgenda _CancelaAgenda;
         private readonly IUsuarioMedicoAppService _appService;
-        private readonly ILogger<UsuarioController> _logger;
+        private readonly ILogger<MedicoController> _logger;
 
-        public MedicoController(ICriaAgendaDisponivel criaAgenda, ILogger<UsuarioController> logger, IFinalizaConsultaAgenda finalizaAgenda, IUsuarioMedicoAppService appService)
+        public MedicoController(ICriaAgendaDisponivel criaAgenda, ILogger<MedicoController> logger, IFinalizaConsultaAgenda finalizaAgenda, IUsuarioMedicoAppService appService)
         {
             _criaAgenda = criaAgenda;
             _logger = logger;

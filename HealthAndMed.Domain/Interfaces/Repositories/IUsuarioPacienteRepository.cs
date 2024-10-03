@@ -9,5 +9,6 @@ namespace HealthAndMed.Domain.Interfaces.Repositories
 {
     public interface IUsuarioPacienteRepository : IRepositoryBase<UsuarioPaciente>
     {
+
     }
 }
