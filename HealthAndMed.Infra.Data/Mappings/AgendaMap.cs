@@ -28,6 +28,10 @@ namespace HealthAndMed.Infra.Data.Mappings
             builder.HasOne(x => x.Medico)
                     .WithMany(x => x.Agendas)
                     .HasForeignKey(x=>x.Medico_Id);
+
+            builder.HasOne(x => x.EspecialidadeMedica)
+                .WithMany(x => x.agendas)
+                .HasForeignKey(x=>x.Especialidade_Id);
         }
     }
 }

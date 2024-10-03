@@ -114,5 +114,28 @@ namespace HealthAndMed.Presentation.Controllers
                 return BadRequest($"Erro ao realizar consulta: {e.Message}");
             }
         }
+
+        /// <summary>
+        /// Serviço para listar as consultas disponivel para o médico informado na data informada.
+        /// </summary>
+        [HttpGet]
+        [Authorize(Roles = $"{Permissoes.Paciente}")]
+        [Route("lista-consulta-medico/{id}/{idEspecialidade}")]
+        public async Task<IActionResult> PorMedicoConsultaEspecialidade(int id, int idEspecialidade)
+        {
+            var userId = int.Parse(User.FindFirst("Id")?.Value);
+            try
+            {
+                var response = await _appService.AgendaDisponivelMedico(id, idEspecialidade);
+                return StatusCode(201, response);
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
+                return BadRequest($"Erro ao realizar consulta: {e.Message}");
+            }
+        }
+
     }
 }

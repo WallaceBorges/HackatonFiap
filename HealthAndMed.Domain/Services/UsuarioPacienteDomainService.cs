@@ -12,12 +12,26 @@ namespace HealthAndMed.Domain.Services
     public class UsuarioPacienteDomainService : IUsuarioPacienteDomainService
     {
         private readonly IAgendaRepository _agendaRepository;
+        private readonly IMedicoEspecialidadeRepository _medicoEspecialidade;
 
         public UsuarioPacienteDomainService(IAgendaRepository agendaRepository)
         {
             _agendaRepository = agendaRepository;
         }
 
+        public async Task<MedicoEspecialidadeAgendaResponseModel> AgendaDisponivelMedico(int idMedico, int idEspecialidade)
+        {
+            try
+            {
+                var agenda = await _medicoEspecialidade.AgendaPorEspecialidade(idMedico,idEspecialidade);
+                return agenda;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         public async Task<AgendaResponseModel> AgendaPacienteEdata(DateTime data, int idPaciente)
         {

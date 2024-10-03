@@ -53,6 +53,7 @@ namespace HealthAndMed.Infra.Data.Migrations
                     Medico_Id = table.Column<int>(type: "int", nullable: false),
                     DataAtendimento = table.Column<DateTime>(type: "smalldatetime", nullable: false),
                     Paciente_Id = table.Column<int>(type: "int", nullable: true),
+                    Especialidade_Id = table.Column<int>(type: "int", nullable: true),
                     DataAgendou = table.Column<DateTime>(type: "datetime2", nullable: true),
                     isAtendico = table.Column<bool>(type: "bit", nullable: true),
                     Prontuario = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -60,6 +61,11 @@ namespace HealthAndMed.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agenda", x => new { x.Medico_Id, x.DataAtendimento });
+                    table.ForeignKey(
+                        name: "FK_Agenda_EspecialidadeMedica_Especialidade_Id",
+                        column: x => x.Especialidade_Id,
+                        principalTable: "EspecialidadeMedica",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Agenda_Usuario_Medico_Id",
                         column: x => x.Medico_Id,
@@ -122,6 +128,11 @@ namespace HealthAndMed.Infra.Data.Migrations
                     { 19, "Infectologista" },
                     { 20, "Cirurgião Geral" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agenda_Especialidade_Id",
+                table: "Agenda",
+                column: "Especialidade_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Agenda_Paciente_Id",
