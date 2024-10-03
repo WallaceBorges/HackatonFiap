@@ -47,7 +47,53 @@ namespace HealthAndMed.Presentation.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
-                return BadRequest($"Erro ao Criar Horásrio Disponivel: {e.Message}");
+                return BadRequest($"Erro ao Criar Horário Disponivel: {e.Message}");
+            }
+
+        }
+
+        /// <summary>
+        /// Serviço para vincular uma especialidade ao médico logado.
+        /// </summary>
+        [HttpPost]
+        [Authorize(Roles = $"{Permissoes.Medico}")]
+        [Route("inclui-especialidade/{idEspecialidade}")]
+        public IActionResult vinculaConsulta(int idEspecialidade)
+        {
+            var userId = int.Parse(User.FindFirst("Id")?.Value);
+            try
+            {
+                
+                var response = _appService?.CadastraEspecialidade(idEspecialidade,userId);
+                return StatusCode(201, response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
+                return BadRequest($"Erro ao incluir especialidade ao médico: {e.Message}");
+            }
+
+        }
+
+        /// <summary>
+        /// Serviço para desvincular uma especialidade ao médico logado.
+        /// </summary>
+        [HttpDelete]
+        [Authorize(Roles = $"{Permissoes.Medico}")]
+        [Route("remove-especialidade/{idEspecialidade}")]
+        public IActionResult desvinculaConsulta(int idEspecialidade)
+        {
+            var userId = int.Parse(User.FindFirst("Id")?.Value);
+            try
+            {
+
+                var response = _appService?.ExcluiEspecialidade(idEspecialidade, userId);
+                return StatusCode(201, response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
+                return BadRequest($"Erro ao incluir especialidade ao médico: {e.Message}");
             }
 
         }
@@ -118,8 +164,6 @@ namespace HealthAndMed.Presentation.Controllers
                 _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
                 return BadRequest($"Erro ao realizar consulta: {e.Message}");
             }
-
-
         }
 
         /// <summary>

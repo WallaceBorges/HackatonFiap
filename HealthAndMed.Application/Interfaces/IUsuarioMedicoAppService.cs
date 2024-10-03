@@ -12,5 +12,8 @@ namespace HealthAndMed.Application.Interfaces
         Task<IList<AgendaResponseModel>> ListaAgendaPorMedico(int idMedico);
         Task<AgendaResponseModel> AgendaMedicoEdata(DateTime data, int idMedico);
         Task<IList<AgendaResponseModel>> ListaAgendaNaData(DateTime data, int idMedico);
+
+        Task<string> CadastraEspecialidade(int idEspecialidade, int idMedico);
+        Task<string> ExcluiEspecialidade(int idEspecialidade, int idMedico);
     }
 }

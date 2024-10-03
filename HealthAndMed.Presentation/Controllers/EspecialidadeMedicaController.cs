@@ -77,7 +77,7 @@ namespace HealthAndMed.Presentation.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
-                return BadRequest($"Erro ao Criar Horásrio Disponivel: {e.Message}");
+                return BadRequest($"Erro ao Criar Horário Disponivel: {e.Message}");
             }
         }
 
@@ -97,7 +97,7 @@ namespace HealthAndMed.Presentation.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
-                return BadRequest($"Erro ao Criar Horásrio Disponivel: {e.Message}");
+                return BadRequest($"Erro ao Criar Horário Disponivel: {e.Message}");
             }
         }
     }

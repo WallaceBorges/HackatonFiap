@@ -1,6 +1,7 @@
 ﻿using HealthAndMed.Domain.Interfaces.Repositories;
 using HealthAndMed.Domain.Interfaces.Services;
 using HealthAndMed.Domain.Models.Responses;
+using HealthAndMed.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace HealthAndMed.Domain.Services
     public class UsuarioMedicoDomainService : IUsuarioMedicoDomainService
     {
         private readonly IAgendaRepository _agendaRepository;
+        private readonly IMedicoEspecialidadeRepository _MedicoEspecialidadeRepository;
 
-        public UsuarioMedicoDomainService(IAgendaRepository agendaRepository)
+        public UsuarioMedicoDomainService(IAgendaRepository agendaRepository, IMedicoEspecialidadeRepository medicoEspecialidadeRepository)
         {
             _agendaRepository = agendaRepository;
+            _MedicoEspecialidadeRepository = medicoEspecialidadeRepository;
         }
 
         public async Task<AgendaResponseModel> AgendaMedicoEdata(DateTime data, int idMedico)
@@ -42,12 +45,52 @@ namespace HealthAndMed.Domain.Services
             }
         }
 
+        public async Task<string> CadastraEspecialidadeParaMedico(int idEspecialidade, int idMedico)
+        {
+            try
+            {
+                var esp = new MedicoEspecialidade
+                {
+                    EspecialidadeMedica_Id = idEspecialidade,
+                    Medico_Id = idMedico
+                };
+                _MedicoEspecialidadeRepository.Cadastrar(esp);
+                return "Especialidade Cadastrada para o médico com sucesso";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<string> ExcluiEspecialidadeParaMedico(int idEspecialidade, int idMedico)
+        {
+            try
+            {
+                var esp = await _MedicoEspecialidadeRepository.ObterPorIdMedicoIdEspecialidade(idMedico, idEspecialidade);
+                if (esp != null)
+                {
+                    _MedicoEspecialidadeRepository.Deletar(esp);
+                    return "Especialidade Cadastrada para o médico com sucesso";
+                }
+                else
+                {
+                    return "Especialidade não localizada para o médico logado.";
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<IList<AgendaResponseModel>> ListaAgendaNaData(DateTime data, int idMedico)
         {
             try
             {
                 var agenda = await _agendaRepository.ObterPorIdMedicoNaData(idMedico, data);
-                var agendaResponde = agenda.Select(x=> new AgendaResponseModel
+                var agendaResponde = agenda.Select(x => new AgendaResponseModel
                 {
                     Medico_Id = x.Medico_Id,
                     DataAtendimento = x.DataAtendimento,
@@ -78,7 +121,7 @@ namespace HealthAndMed.Domain.Services
                     Paciente_Id = x.Paciente_Id,
                     DataAgendou = x.DataAgendou,
                     Prontuario = x.Prontuario,
-                    isAtendico=x.isAtendico,
+                    isAtendico = x.isAtendico,
 
                 }).ToList();
                 return agendaResponde;

@@ -23,6 +23,16 @@ namespace HealthAndMed.Application.Services
             return await _domainService.AgendaMedicoEdata(data,idMedico);
         }
 
+        public async Task<string> CadastraEspecialidade(int idEspecialidade, int idMedico)
+        {
+            return await _domainService.CadastraEspecialidadeParaMedico(idEspecialidade, idMedico);
+        }
+
+        public async Task<string> ExcluiEspecialidade(int idEspecialidade, int idMedico)
+        {
+            return await _domainService.ExcluiEspecialidadeParaMedico(idEspecialidade, idMedico);
+        }
+
         public async Task<IList<AgendaResponseModel>> ListaAgendaNaData(DateTime data, int idMedico)
         {
             return await _domainService.ListaAgendaNaData(data,idMedico);
@@ -31,7 +41,8 @@ namespace HealthAndMed.Application.Services
         public async Task<IList<AgendaResponseModel>> ListaAgendaPorMedico(int idMedico)
         {
             return await _domainService.ListaAgendaPorMedico(idMedico);
-            
         }
+
+
     }
 }

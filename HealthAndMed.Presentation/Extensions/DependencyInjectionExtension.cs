@@ -30,6 +30,7 @@ namespace AtivosTC5.Services.Extensions
 
             services.AddTransient<IAgendaRepository, AgendaRepository>();
             services.AddTransient<IEspecialidadeMedicaRepository, EspecialidadeMedicaRepository>();
+            services.AddTransient<IMedicoEspecialidadeRepository, MedicoEspecialidadeRepository>();
             services.AddTransient<IUsuarioMedicoRepository, UsuarioMedicoRepository>();
             services.AddTransient<IUsuarioPacienteRepository, UsuarioPacienteRepository>();
             services.AddTransient<IUsuarioBaseRepository, UsuarioBaseRepository>();

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthAndMed.Infra.Data.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20241002212504_init")]
+    [Migration("20241003224223_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -196,6 +196,9 @@ namespace HealthAndMed.Infra.Data.Migrations
                     b.Property<DateTime?>("DataAgendou")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("Especialidade_Id")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Paciente_Id")
                         .HasColumnType("int");
 
@@ -206,6 +209,8 @@ namespace HealthAndMed.Infra.Data.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Medico_Id", "DataAtendimento");
+
+                    b.HasIndex("Especialidade_Id");
 
                     b.HasIndex("Paciente_Id");
 
@@ -250,6 +255,10 @@ namespace HealthAndMed.Infra.Data.Migrations
 
             modelBuilder.Entity("HealthAndMed.Domain.ValueObjects.Agenda", b =>
                 {
+                    b.HasOne("HealthAndMed.Domain.Entities.EspecialidadeMedica", "EspecialidadeMedica")
+                        .WithMany("agendas")
+                        .HasForeignKey("Especialidade_Id");
+
                     b.HasOne("HealthAndMed.Domain.Entities.UsuarioMedico", "Medico")
                         .WithMany("Agendas")
                         .HasForeignKey("Medico_Id")
@@ -260,6 +269,8 @@ namespace HealthAndMed.Infra.Data.Migrations
                         .WithMany("Agendas")
                         .HasForeignKey("Paciente_Id")
                         .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("EspecialidadeMedica");
 
                     b.Navigation("Medico");
 
@@ -287,6 +298,8 @@ namespace HealthAndMed.Infra.Data.Migrations
 
             modelBuilder.Entity("HealthAndMed.Domain.Entities.EspecialidadeMedica", b =>
                 {
+                    b.Navigation("agendas");
+
                     b.Navigation("medicoEspecialidades");
                 });
 

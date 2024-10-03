@@ -10,5 +10,6 @@ namespace HealthAndMed.Domain.Entities
     public class EspecialidadeMedica:EntityBase
     {
        public IList<MedicoEspecialidade> medicoEspecialidades { get; set; }
+       public IList<Agenda> agendas { get; set; }
     }
 }
