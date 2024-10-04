@@ -9,9 +9,9 @@ namespace HealthAndMed.Infra.Messages.Settings
     public class MailSettings
     {
        
-            public static string? Account => "HackatonFiap@outlook.com";
-            public static string? Password => "kpukgfxloexxzfzq";
-            public static string? Smtp => "smtp-mail.outlook.com";
+            public static string? Account => "hackatonfiap@gmx.com";
+            public static string? Password => "!@#S3nha!@#";
+            public static string? Smtp => "mail.gmx.com";
             public static int? Port => 587;
        
     }
