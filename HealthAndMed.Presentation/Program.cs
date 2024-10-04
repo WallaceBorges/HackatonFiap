@@ -2,6 +2,7 @@ using AtivosTC5.Infra.Data.Contexts;
 using AtivosTC5.Services.Extensions;
 using HealthAndMed.Services.Extensions;
 using Microsoft.EntityFrameworkCore;
+using static HealthAndMed.Infra.Messages.Consumers.ConsultaMessageConsumer;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("TechChallengeConection");
@@ -19,6 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDoc();
 builder.Services.AddDependencyInjection();
 builder.Services.AddJwtBearer();
+builder.Services.AddHostedService<UsuarioMessageConsumer>();
 builder.Services.AddCorsPolicy();
 builder.Services.AddMvc();
 

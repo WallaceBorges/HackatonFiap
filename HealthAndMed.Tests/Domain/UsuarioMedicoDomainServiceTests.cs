@@ -14,12 +14,14 @@ namespace HealthAndMed.Tests.Domain
     public class UsuarioMedicoDomainServiceTests
     {
         private readonly Mock<IAgendaRepository> _agendaRepositoryMock;
+        private readonly Mock<IMedicoEspecialidadeRepository> _MedicoEspRepositoryMock;
         private readonly UsuarioMedicoDomainService _service;
 
         public UsuarioMedicoDomainServiceTests()
         {
             _agendaRepositoryMock = new Mock<IAgendaRepository>();
-            _service = new UsuarioMedicoDomainService(_agendaRepositoryMock.Object);
+            _MedicoEspRepositoryMock = new Mock<IMedicoEspecialidadeRepository>();
+            _service = new UsuarioMedicoDomainService(_agendaRepositoryMock.Object, _MedicoEspRepositoryMock.Object);
         }
 
         #region AgendaMedicoEdata Tests

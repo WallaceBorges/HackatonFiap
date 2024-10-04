@@ -24,6 +24,7 @@
     <ProjectReference Include="..\HealthAndMed.Application\HealthAndMed.Application.csproj" />
     <ProjectReference Include="..\HealthAndMed.Infra.Authentication\HealthAndMed.Infra.Authentication.csproj" />
     <ProjectReference Include="..\HealthAndMed.Infra.Data\HealthAndMed.Infra.Data.csproj" />
+    <ProjectReference Include="..\HealthAndMed.Infra.Messages\HealthAndMed.Infra.Messages.csproj" />
   </ItemGroup>
 
 </Project>

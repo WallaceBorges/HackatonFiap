@@ -10,6 +10,7 @@ using HealthAndMed.Domain.Services;
 using HealthAndMed.Domain.UseCases;
 using HealthAndMed.Infra.Authentication.Services;
 using HealthAndMed.Infra.Data.Repositories;
+using HealthAndMed.Infra.Messages.Producers;
 
 namespace AtivosTC5.Services.Extensions
 {
@@ -50,6 +51,7 @@ namespace AtivosTC5.Services.Extensions
             services.AddTransient<IFinalizaConsultaAgenda, FinalizaConsultaAgenda>();
             services.AddTransient<IPacienteCancelaConsulta, PacienteCancelaConsulta>();
             services.AddTransient<IPacienteAgendaConsulta, PacienteAgendaConsulta>();
+            services.AddTransient<IConsultaMessageProduce, ConsultaMessageProducer>();
 
             #endregion
 
