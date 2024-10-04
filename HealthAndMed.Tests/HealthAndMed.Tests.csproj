@@ -23,11 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\" />
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HealthAndMed.Application\HealthAndMed.Application.csproj" />
     <ProjectReference Include="..\HealthAndMed.Domain\HealthAndMed.Domain.csproj" />
     <ProjectReference Include="..\HealthAndMed.Infra.Data\HealthAndMed.Infra.Data.csproj" />
