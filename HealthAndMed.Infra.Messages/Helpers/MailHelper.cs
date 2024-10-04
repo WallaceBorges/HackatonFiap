@@ -1,36 +1,57 @@
 ﻿using HealthAndMed.Infra.Messages.Settings;
+using MimeKit;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthAndMed.Infra.Messages.Helpers
 {
-    public class MailHelper
+    public static class MailHelper
     {
         public static void SendMail(string to, string subject, string body)
         {
             #region Criando a mensagem
 
-            var mailMessage = new MailMessage(MailSettings.Account, to);
-            mailMessage.Subject = subject;
-            mailMessage.Body = body;
-            mailMessage.IsBodyHtml = true;
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("HealthAndMed", MailSettings.Account));
+            message.To.Add(new MailboxAddress("Medico",to));
+            message.Subject = subject;
+
+            // Definindo o corpo como HTML
+            message.Body = new TextPart("html")
+            {
+                Text = body
+            };
 
             #endregion
 
             #region Enviando a mensagem
 
-            var smtpClient = new SmtpClient(MailSettings.Smtp, MailSettings.Port.Value);
-            smtpClient.EnableSsl = true;
-            smtpClient.Credentials = new NetworkCredential(MailSettings.Account, MailSettings.Password);
-           // smtpClient.Send(mailMessage);
+            using (var smtpClient = new SmtpClient())
+            {
+                try
+                {
+                    // Conectar ao servidor SMTP com SSL habilitado
+                    smtpClient.Connect(MailSettings.Smtp, MailSettings.Port.Value, SecureSocketOptions.StartTls);
+
+                    // Autenticação com o servidor
+                    smtpClient.Authenticate(MailSettings.Account, MailSettings.Password);
+
+                    // Enviar e-mail
+                    smtpClient.Send(message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao enviar e-mail: {ex.Message}");
+                }
+                finally
+                {
+                    // Desconectar e limpar recursos
+                    smtpClient.Disconnect(true);
+                }
+            }
 
             #endregion
         }
-
     }
 }

@@ -3,6 +3,7 @@ using HealthAndMed.Domain.Interfaces.Services;
 using HealthAndMed.Domain.Models.Dtos;
 using HealthAndMed.Domain.Models.Requests;
 using HealthAndMed.Domain.UseCases;
+using HealthAndMed.Infra.Messages.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,18 +44,19 @@ namespace HealthAndMed.Application.UseCases
                     _agendaRepository.Alterar(ag);
                     var medico = _userRepos.ObterPorId(ag.Medico_Id);
                     var paciente = _userRepos.ObterPorId(ag.Paciente_Id.Value);
+                    var usuarioMessageService = new ConsultaMessageService();
+        
                     _Messagem.Send(new Domain.Models.Dtos.ConsultaMensagemDto
                     {
                         DataHora = ag.DataAgendou,
-                        TipoMensagem=TipoMensagem.ConsultaMarcada,
-                        Usuario=new UsuarioDto
+                        TipoMensagem = TipoMensagem.ConsultaMarcada,
+                        Usuario = new UsuarioDto
                         {
-                            Data=agenda.DataAtendimento,
-                            NomePaciente=paciente.Nome,
-                            Medico=medico.Nome,
-                            Email=medico.Email,
+                            Data = agenda.DataAtendimento,
+                            NomePaciente = paciente.Nome,
+                            Medico = medico.Nome,
+                            Email = medico.Email,
                         }
-                       
                     });
                     return "Consulta Agendada com sucesso.";
                 }

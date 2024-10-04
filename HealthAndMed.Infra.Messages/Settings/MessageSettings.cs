@@ -18,6 +18,6 @@ namespace HealthAndMed.Infra.Messages.Settings
         /// Nome da fila que iremos acessar no servidor
         /// </summary>
         public static string QueueName
-            => "consulta_marcada";
+            => "novafila";
     }
 }

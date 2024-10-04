@@ -1,6 +1,5 @@
 ﻿using HealthAndMed.Domain.Interfaces.Services;
 using HealthAndMed.Domain.Models.Dtos;
-using HealthAndMed.Infra.Messages.Consumers;
 using HealthAndMed.Infra.Messages.Helpers;
 using HealthAndMed.Infra.Messages.Settings;
 using Newtonsoft.Json;
@@ -17,6 +16,7 @@ namespace HealthAndMed.Infra.Messages.Producers
     {
         public void Send(ConsultaMensagemDto dto)
         {
+
             //endereço do servidor do RabbitMQ (AMQP CLOUD)
             var connectionFactory = new ConnectionFactory() { Uri = new Uri(MessageSettings.Url) };
             using (var connection = connectionFactory.CreateConnection())

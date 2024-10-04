@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HealthAndMed.Domain\HealthAndMed.Domain.csproj" />
+    <ProjectReference Include="..\HealthAndMed.Infra.Messages\HealthAndMed.Infra.Messages.csproj" />
   </ItemGroup>
 
 </Project>
