@@ -14,5 +14,6 @@ namespace HealthAndMed.Domain.ValueObjects
 
         public UsuarioMedico Medico { get; set; }
         public EspecialidadeMedica Especialidade { get; set; }
+        public IList<Agenda> Agenda { get; set; }
     }
 }

@@ -86,5 +86,18 @@ namespace HealthAndMed.Application.Services
                 throw;
             }
         }
+
+        public async Task<EspecialidadeMedicoAgendaResponseModel> AgendaDisponivelEspecialidade(int idEspecialidade)
+        {
+            try
+            {
+                return await _domainService.AgendaDisponivelEspecialidade(idEspecialidade);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

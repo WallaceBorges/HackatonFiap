@@ -16,7 +16,8 @@ namespace HealthAndMed.Domain.Interfaces.Repositories
         Task<IList<MedicoEspecialidade>> ObterPorIdMedico(int id);
         Task<IList<MedicoEspecialidade>>  ObterPorIdEspecialidade(int id);
         Task<MedicoEspecialidade>  ObterPorIdMedicoIdEspecialidade(int idMedico,int idEspecialidade);
-        Task<MedicoEspecialidadeAgendaResponseModel> AgendaPorEspecialidade(int idMedico, int idEspecialidade);
+        Task<MedicoEspecialidadeAgendaResponseModel> AgendaPorMedicoEspecialidade(int idMedico, int idEspecialidade);
+        Task<EspecialidadeMedicoAgendaResponseModel> AgendaPorEspecialidade(int idEspecialidade);
         void Cadastrar(MedicoEspecialidade entidade);
         void Alterar(MedicoEspecialidade entidade);
         void Deletar(MedicoEspecialidade entidade);

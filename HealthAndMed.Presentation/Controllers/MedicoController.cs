@@ -58,13 +58,13 @@ namespace HealthAndMed.Presentation.Controllers
         [HttpPost]
         [Authorize(Roles = $"{Permissoes.Medico}")]
         [Route("inclui-especialidade/{idEspecialidade}")]
-        public IActionResult vinculaConsulta(int idEspecialidade)
+        public async Task<IActionResult> vinculaConsulta(int idEspecialidade)
         {
             var userId = int.Parse(User.FindFirst("Id")?.Value);
             try
             {
                 
-                var response = _appService?.CadastraEspecialidade(idEspecialidade,userId);
+                var response =await _appService?.CadastraEspecialidade(idEspecialidade,userId);
                 return StatusCode(201, response);
             }
             catch (Exception e)
@@ -81,13 +81,13 @@ namespace HealthAndMed.Presentation.Controllers
         [HttpDelete]
         [Authorize(Roles = $"{Permissoes.Medico}")]
         [Route("remove-especialidade/{idEspecialidade}")]
-        public IActionResult desvinculaConsulta(int idEspecialidade)
+        public async Task<IActionResult> desvinculaConsulta(int idEspecialidade)
         {
             var userId = int.Parse(User.FindFirst("Id")?.Value);
             try
             {
 
-                var response = _appService?.ExcluiEspecialidade(idEspecialidade, userId);
+                var response = await _appService?.ExcluiEspecialidade(idEspecialidade, userId);
                 return StatusCode(201, response);
             }
             catch (Exception e)

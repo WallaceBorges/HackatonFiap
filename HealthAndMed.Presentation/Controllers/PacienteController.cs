@@ -116,17 +116,39 @@ namespace HealthAndMed.Presentation.Controllers
         }
 
         /// <summary>
-        /// Serviço para listar as consultas disponivel para o médico informado na data informada.
+        /// Serviço para listar as consultas disponivel para o médico informado na especialidade selecionada.
         /// </summary>
         [HttpGet]
         [Authorize(Roles = $"{Permissoes.Paciente}")]
-        [Route("lista-consulta-medico/{id}/{idEspecialidade}")]
-        public async Task<IActionResult> PorMedicoConsultaEspecialidade(int id, int idEspecialidade)
+        [Route("lista-consulta-medico/{idMedico}/{idEspecialidade}")]
+        public async Task<IActionResult> PorMedicoConsultaEspecialidade(int idMedico, int idEspecialidade)
         {
             var userId = int.Parse(User.FindFirst("Id")?.Value);
             try
             {
-                var response = await _appService.AgendaDisponivelMedico(id, idEspecialidade);
+                var response = await _appService.AgendaDisponivelMedico(idMedico, idEspecialidade);
+                return StatusCode(201, response);
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"{DateTime.Now} - Exception Forçada: {e.Message}");
+                return BadRequest($"Erro ao realizar consulta: {e.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Serviço para listar as consultas disponivel para a especialidade informada.
+        /// </summary>
+        [HttpGet]
+        [Authorize(Roles = $"{Permissoes.Paciente}")]
+        [Route("lista-consulta-especialidade/{idEspecialidade}")]
+        public async Task<IActionResult> ConsultaEspecialidade(int idEspecialidade)
+        {
+            var userId = int.Parse(User.FindFirst("Id")?.Value);
+            try
+            {
+                var response = await _appService.AgendaDisponivelEspecialidade(idEspecialidade);
                 return StatusCode(201, response);
 
             }

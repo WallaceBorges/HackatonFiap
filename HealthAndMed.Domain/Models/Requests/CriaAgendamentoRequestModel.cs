@@ -13,5 +13,6 @@ namespace HealthAndMed.Domain.Models.Requests
         [JsonIgnore]
         public int Medico_Id { get; set; }
         public DateTime DataAtendimento { get; set; }
+        public int Especialidade_Id { get; set; }
     }
 }

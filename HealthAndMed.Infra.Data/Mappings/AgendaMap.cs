@@ -19,7 +19,7 @@ namespace HealthAndMed.Infra.Data.Mappings
 
             builder.Property(e => e.DataAtendimento)
                         .HasColumnType("smalldatetime");
-            builder.HasKey(x=>new { x.Medico_Id,x.DataAtendimento});
+            builder.HasKey(x=>new { x.Medico_Id,x.DataAtendimento,x.Especialidade_Id});
 
             builder.HasOne(x => x.Paciente)
                     .WithMany(x => x.Agendas)
@@ -29,9 +29,10 @@ namespace HealthAndMed.Infra.Data.Mappings
                     .WithMany(x => x.Agendas)
                     .HasForeignKey(x=>x.Medico_Id);
 
-            builder.HasOne(x => x.EspecialidadeMedica)
-                .WithMany(x => x.agendas)
-                .HasForeignKey(x=>x.Especialidade_Id);
+            builder.HasOne(x => x.MedicoEspecialidade)
+                   .WithMany(x => x.Agenda)
+                   .HasPrincipalKey(x=>new { x.EspecialidadeMedica_Id })
+                   .HasForeignKey(x=>new { x.Especialidade_Id });
         }
     }
 }

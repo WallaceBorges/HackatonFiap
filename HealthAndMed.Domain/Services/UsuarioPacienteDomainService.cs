@@ -14,16 +14,31 @@ namespace HealthAndMed.Domain.Services
         private readonly IAgendaRepository _agendaRepository;
         private readonly IMedicoEspecialidadeRepository _medicoEspecialidade;
 
-        public UsuarioPacienteDomainService(IAgendaRepository agendaRepository)
+        public UsuarioPacienteDomainService(IAgendaRepository agendaRepository, IMedicoEspecialidadeRepository medicoEspecialidade)
         {
             _agendaRepository = agendaRepository;
+            _medicoEspecialidade = medicoEspecialidade;
+        }
+
+        public async Task<EspecialidadeMedicoAgendaResponseModel> AgendaDisponivelEspecialidade(int idEspecialidade)
+        {
+            try
+            {
+                var agenda = await _medicoEspecialidade.AgendaPorEspecialidade(idEspecialidade);
+                return agenda;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<MedicoEspecialidadeAgendaResponseModel> AgendaDisponivelMedico(int idMedico, int idEspecialidade)
         {
             try
             {
-                var agenda = await _medicoEspecialidade.AgendaPorEspecialidade(idMedico,idEspecialidade);
+                var agenda = await _medicoEspecialidade.AgendaPorMedicoEspecialidade(idMedico,idEspecialidade);
                 return agenda;
             }
             catch (Exception)
