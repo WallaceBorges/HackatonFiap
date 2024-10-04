@@ -123,7 +123,7 @@ namespace HealthAndMed.Domain.Services
             try
             {
                 var agenda = await _agendaRepository.ObterPorIdMedicoNaData(idMedico, data);
-                var agendaResponde = agenda.Where(x => x.Paciente_Id == null || x.Paciente_Id !> 0)
+                var agendaResponde = agenda.Where(x => x.Paciente_Id == null || x.Paciente_Id == 0)
                                             .Select(x => new AgendaResponseModel
                 {
                     Medico_Id = x.Medico_Id,
