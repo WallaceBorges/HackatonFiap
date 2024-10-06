@@ -17,9 +17,9 @@
 
 :small_blue_diamond: [Como rodar o projeto](#como-rodar-o-projeto)
 
-:small_blue_diamond: [Documentação](#documentação)
-
 :small_blue_diamond: [Tecnologias](#tecnologias)
+
+:small_blue_diamond: [Links](#links)
 
 ## Descrição do projeto 
 
@@ -87,3 +87,18 @@ O projeto foi desenvolvido na versão .Net 8.0, com banco de dados SQL Server.
 
 | [<img src="https://avatars.githubusercontent.com/u/31574481?s=400&u=c256fa50a65feb93d2b537776c538304f1ba6efe&v=4" width=115><br><sub>Thiago Pereira</sub>](https://github.com/TSP17) |  [<img src="https://avatars.githubusercontent.com/u/17633740?v=4" width=115><br><sub>Gabriel Seles</sub>](https://github.com/SelesGabriel) |  [<img src="https://avatars.githubusercontent.com/u/46162170?v=4" width=115><br><sub>Wallace Borges</sub>](https://github.com/WallaceBorges) |[<img src="https://avatars.githubusercontent.com/u/77901483?v=4" width=115><br><sub>Simon Mendes</sub>](https://github.com/simpmendes) |
 | :---: | :---: | :---: | :---: 
+
+## Links
+
+Seegue abaixo links com explicações do projeto
+
+Parte 1
+```
+https://youtu.be/J-3eQnVFV04
+```
+
+Parte 2
+```
+https://youtu.be/ohIXEUEHk6k
+```
+
